@@ -5,7 +5,7 @@
     "enable": true,
     "env": [
         {
-            "MLOPS": "H:/Github/MLOPs/MLOPs"
+            "MLOPS": "X:/MLOPS"
         },
         {
             "MLOPS_MODELS": "$MLOPS/checkpoints/"
