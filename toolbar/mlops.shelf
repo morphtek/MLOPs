@@ -88,33 +88,9 @@ with hou.InterruptableOperation("Installing Dependencies, downloading ~5Gb", ope
         raise hou.Error(out.decode())
     operation.updateProgress(percentage=count/total)
     count+=1
-
-    hou.ui.setStatusMessage("UnInstalling torch ")
-    p = subprocess.Popen(["hython", "-m", "pip", "uninstall", "torch", "torchvision", "torchaudio"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, creationflags = flags)
-    out, err = p.communicate()
-    if err:
-        raise hou.Error(out.decode())
-    operation.updateProgress(percentage=count/total)
-    count+=1
         
     hou.ui.setStatusMessage("Installing torch ")
-    p = subprocess.Popen(["hython", "-m", "pip", "install", "--target", PIP_FOLDER, "torch", "--index-url", "https://download.pytorch.org/whl/cu117"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, creationflags = flags)
-    out, err = p.communicate()
-    if err:
-        raise hou.Error(out.decode())
-    operation.updateProgress(percentage=count/total)
-    count+=1
-
-    hou.ui.setStatusMessage("Installing torchvision ")
-    p = subprocess.Popen(["hython", "-m", "pip", "install", "--target", PIP_FOLDER, "torchvision"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, creationflags = flags)
-    out, err = p.communicate()
-    if err:
-        raise hou.Error(out.decode())
-    operation.updateProgress(percentage=count/total)
-    count+=1
-
-    hou.ui.setStatusMessage("Installing torchaudio ")
-    p = subprocess.Popen(["hython", "-m", "pip", "install", "--target", PIP_FOLDER, "torchaudio"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, creationflags = flags)
+    p = subprocess.Popen(["hython", "-m", "pip", "install", "--target", PIP_FOLDER, "torch", "torchvision", "torchaudio", "--index-url", "https://download.pytorch.org/whl/cu117"], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, creationflags = flags)
     out, err = p.communicate()
     if err:
         raise hou.Error(out.decode())
